@@ -528,7 +528,7 @@
     <!-- 姓名 -->
     <div class="field-group">
       <label for="name">您的姓名</label>
-      <input type="text" id="name" placeholder="請輸入您的全名" />
+     <input type="text" id="name" required placeholder="請輸入姓名">
     </div>
 
     <!-- 出席意願 -->
@@ -585,7 +585,7 @@
         <label>是否需要住宿安排</label>
         <div class="toggle-row">
           <div class="toggle-option">
-            <input type="radio" name="hotel" id="hotel-yes" value="yes" onchange="toggleHotel(true)"/>
+            <input type="text" id="hotel-note" placeholder="請備註住宿人數或特殊需求">
             <label for="hotel-yes">需要</label>
           </div>
           <div class="toggle-option">
@@ -657,7 +657,7 @@
   // init: hide attend-fields
   document.getElementById('attend-fields').style.display = 'none';
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyL7CO0I99tGa9f9_PjJQMrzaHKpm8eSjmrOhJr231o0PdePA75Vcxb-ceLMzdHryFzOg/exec';
+  const SCRIPT_URL = 'https://docs.google.com/spreadsheets/d/1Cfvxz8-_-rMhlrSGXYN07CUeGi3PAE0DaVM7WSkn0cs/edit?gid=0#gid=0';
 
   function handleSubmit() {
     const name = document.getElementById('name').value.trim();
@@ -682,8 +682,15 @@
     btn.disabled = true;
     btn.textContent = '送出中...';
 
-    const payload = { name, attend, guests, meals, hotel, hotelNote, message };
-
+    const payload = const payload = {
+        name: document.getElementById('name').value.trim(),
+        attend: attend,
+        guests: attend === 'yes' ? document.getElementById('guests').value : '0',
+        meals: attend === 'yes' ? Array.from(document.querySelectorAll('input[name="meal"]:checked')).map(el => el.value).join('、') : '',
+        hotel: document.querySelector('input[name="hotel"]:checked')?.value || '',
+        hotelNote: (attend === 'yes' && document.getElementById('hotel-note')) ? document.getElementById('hotel-note').value.trim() : '',
+        message: document.getElementById('message').value.trim()
+      };
     fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
@@ -691,7 +698,7 @@
       body: JSON.stringify(payload)
     })
     .then(() => {
-      const form =const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyiBB_GcS3hl_T4aXFFGGD3Pa0RTHGe57CuEmiIjiqR8o5LGWIIPT2MEYt5LFBL7Lh3tw/exec';
+      const form = document.getElementById('rsvp-form');
       form.style.transition = 'opacity .5s, transform .5s';
       form.style.opacity = '0';
       form.style.transform = 'translateY(20px)';
@@ -710,5 +717,76 @@
     });
   }
 </script>
+<script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw647H8Pdn-v279hgidfVBBRP43D1zNCFKpwS7kvDKB_a1UD-geK2R9F2rf2-9S7Cx60g/exec';
+
+    function updateGuestCount(val) {
+      const input = document.getElementById('guests');
+      let current = parseInt(input.value) || 1;
+      current += val;
+      if (current < 1) current = 1;
+      input.value = current;
+    }
+
+    function toggleFields() {
+      const attend = document.querySelector('input[name="attend"]:checked').value;
+      document.getElementById('attend-details').style.display = (attend === 'yes') ? 'block' : 'none';
+    }
+
+    function toggleHotelDetail() {
+      const hotelEl = document.querySelector('input[name="hotel"]:checked');
+      if (hotelEl) {
+        document.getElementById('hotel-detail').style.display = (hotelEl.value === 'yes') ? 'block' : 'none';
+      }
+    }
+
+    document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const btn = document.querySelector('.submit-btn');
+      btn.disabled = true;
+      btn.textContent = '送出中...';
+
+      const attend = document.querySelector('input[name="attend"]:checked').value;
+      const hotelEl = document.querySelector('input[name="hotel"]:checked');
+      const hotel = hotelEl ? hotelEl.value : '';
+
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        attend: attend,
+        guests: attend === 'yes' ? document.getElementById('guests').value : '0',
+        meals: attend === 'yes' ? Array.from(document.querySelectorAll('input[name="meal"]:checked')).map(el => el.value).join('、') : '',
+        hotel: hotel,
+        hotelNote: (hotel === 'yes') ? (document.querySelector('#hotel-detail input')?.value || '').trim() : '',
+        message: document.getElementById('message').value.trim()
+      };
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        const form = document.getElementById('rsvp-form');
+        form.style.transition = 'opacity .5s, transform .5s';
+        form.style.opacity = '0';
+        form.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          form.style.display = 'none';
+          const success = document.getElementById('success');
+          success.style.display = 'block';
+          success.style.animation = 'fadeUp .6s ease';
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 500);
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert('抱歉，送出時發生錯誤，請檢查網路連線。');
+        btn.disabled = false;
+        btn.textContent = '重新送出回覆';
+      });
+    });
+  </script>
 </body>
 </html>
