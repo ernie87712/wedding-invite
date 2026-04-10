@@ -9,13 +9,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream: #fdf8f3;
-      --blush: #e8c9b8;
-      --rose:  #c9896e;
-      --gold:  #b8965a;
-      --deep:  #4a3728;
-      --muted: #8a7060;
-      --white: #fff;
+      --cream:   #fdf8f3;
+      --blush:   #e8c9b8;
+      --rose:    #c9896e;
+      --gold:    #b8965a;
+      --deep:    #4a3728;
+      --muted:   #8a7060;
+      --white:   #fff;
     }
 
     html { scroll-behavior: smooth; }
@@ -29,19 +29,24 @@
       overflow-x: hidden;
     }
 
+    /* ── DECORATIVE ELEMENTS ── */
     body::before {
       content: '';
-      position: fixed; inset: 0;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 0;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* ── HERO ── */
+    /* ── HERO SECTION ── */
     .hero {
       position: relative;
       min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 60px 24px;
       overflow: hidden;
@@ -51,24 +56,35 @@
       content: '';
       position: absolute;
       border-radius: 50%;
-      border: 1px solid rgba(184,150,90,.18);
+      border: 1px solid rgba(184, 150, 90, 0.18);
       pointer-events: none;
     }
-    .hero::before { width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-    .hero::after  { width: 520px; height: 520px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    .hero::before {
+      width: 700px; height: 700px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero::after {
+      width: 520px; height: 520px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
     .ring-outer {
       position: absolute;
       width: 860px; height: 860px;
       border-radius: 50%;
-      border: 1px solid rgba(184,150,90,.10);
+      border: 1px solid rgba(184, 150, 90, 0.10);
       top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
       pointer-events: none;
     }
 
     .deco-line {
-      width: 1px; height: 60px;
+      width: 1px;
+      height: 60px;
       background: linear-gradient(to bottom, transparent, var(--gold), transparent);
       margin: 0 auto 28px;
       animation: fadeIn 1.5s ease forwards;
@@ -78,11 +94,11 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: clamp(12px, 2vw, 14px);
-      letter-spacing: .35em;
+      letter-spacing: 0.35em;
       color: var(--gold);
       text-transform: uppercase;
       margin-bottom: 20px;
-      animation: fadeUp .8s ease both;
+      animation: fadeUp 0.8s ease both;
     }
 
     .names {
@@ -90,9 +106,9 @@
       font-size: clamp(52px, 10vw, 96px);
       font-weight: 300;
       line-height: 1.05;
-      letter-spacing: .04em;
+      letter-spacing: 0.04em;
       color: var(--deep);
-      animation: fadeUp .9s .15s ease both;
+      animation: fadeUp 0.9s 0.15s ease both;
     }
 
     .names em {
@@ -115,27 +131,18 @@
     .hero-date {
       margin-top: 28px;
       font-size: clamp(13px, 2vw, 15px);
-      letter-spacing: .22em;
+      letter-spacing: 0.22em;
       color: var(--muted);
-      animation: fadeUp 1s .3s ease both;
+      animation: fadeUp 1s 0.3s ease both;
     }
 
     .hero-venue {
       margin-top: 8px;
       font-size: clamp(12px, 1.8vw, 14px);
-      letter-spacing: .15em;
+      letter-spacing: 0.15em;
       color: var(--muted);
-      animation: fadeUp 1s .4s ease both;
+      animation: fadeUp 1s 0.4s ease both;
     }
-
-    .scroll-cue {
-      position: absolute; bottom: 32px;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      animation: fadeIn 1.4s 1s ease both;
-      cursor: pointer;
-    }
-    .scroll-cue span { font-size: 11px; letter-spacing: .2em; color: var(--gold); text-transform: uppercase; }
-    .scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: arrowPulse 2s infinite; }
 
     /* ── RSVP SECTION ── */
     .rsvp-section {
@@ -151,7 +158,7 @@
       font-size: clamp(32px, 5vw, 48px);
       font-weight: 300;
       text-align: center;
-      letter-spacing: .08em;
+      letter-spacing: 0.08em;
       margin-bottom: 8px;
       color: var(--deep);
     }
@@ -159,7 +166,7 @@
     .section-subtitle {
       text-align: center;
       font-size: 11px;
-      letter-spacing: .3em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 72px;
@@ -168,19 +175,19 @@
     .rsvp-card {
       background: var(--white);
       padding: 64px 48px;
-      border: 1px solid rgba(184,150,90,.12);
-      box-shadow: 0 20px 50px rgba(74,55,40,.04);
+      border: 1px solid rgba(184, 150, 90, 0.12);
+      box-shadow: 0 20px 50px rgba(74, 55, 40, 0.04);
       position: relative;
     }
 
-    /* ── FIELDS ── */
     .field-group { margin-bottom: 48px; }
+
     .field-group:last-of-type { margin-bottom: 0; }
 
-    .field-group > label {
+    .field-group label {
       display: block;
       font-size: 11px;
-      letter-spacing: .28em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 16px;
@@ -196,25 +203,37 @@
       font-size: 16px;
       color: var(--deep);
       outline: none;
-      transition: border-color .4s;
+      transition: border-color 0.4s;
     }
-    input[type="text"]:focus, textarea:focus { border-color: var(--rose); }
-    textarea { resize: none; }
 
-    /* ── RADIO / CHECKBOX OPTIONS ── */
-    .options-row { display: flex; gap: 32px; flex-wrap: wrap; }
+    input[type="text"]:focus, textarea:focus {
+      border-color: var(--rose);
+    }
 
-    .option-item { position: relative; cursor: pointer; }
-    .option-item input { display: none; }
+    /* ── RADIO OPTIONS ── */
+    .options-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .option-item {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .option-item input {
+      display: none;
+    }
 
     .option-item label {
       display: flex;
       align-items: center;
       font-size: 15px;
-      letter-spacing: .05em;
+      letter-spacing: 0.05em;
       color: var(--muted);
       cursor: pointer;
-      transition: color .3s;
+      transition: color 0.3s;
       margin-bottom: 0;
       text-transform: none;
     }
@@ -225,14 +244,13 @@
       border: 1px solid var(--blush);
       border-radius: 50%;
       margin-right: 12px;
-      transition: all .3s;
-      flex-shrink: 0;
+      transition: all 0.3s;
     }
 
-    /* checkbox uses square */
-    .option-item input[type="checkbox"] + label::before { border-radius: 3px; }
+    .option-item input:checked + label {
+      color: var(--rose);
+    }
 
-    .option-item input:checked + label { color: var(--rose); }
     .option-item input:checked + label::before {
       border-color: var(--rose);
       background: var(--rose);
@@ -240,7 +258,11 @@
     }
 
     /* ── COUNTER ── */
-    .counter { display: flex; align-items: center; gap: 24px; }
+    .counter {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
 
     .counter-btn {
       width: 32px; height: 32px;
@@ -249,19 +271,25 @@
       background: transparent;
       color: var(--gold);
       cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      line-height: 1;
-      transition: all .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
     }
-    .counter-btn:hover { border-color: var(--rose); color: var(--rose); }
 
-    .counter-num {
+    .counter-btn:hover {
+      border-color: var(--rose);
+      color: var(--rose);
+    }
+
+    .counter input {
+      width: 40px;
+      text-align: center;
+      border: none;
       font-family: 'Cormorant Garamond', serif;
       font-size: 24px;
       color: var(--deep);
-      min-width: 32px;
-      text-align: center;
+      background: transparent;
     }
 
     /* ── DEPENDENT FIELDS ── */
@@ -269,11 +297,14 @@
       display: none;
       margin-top: 48px;
       padding-top: 48px;
-      border-top: 1px solid rgba(184,150,90,.08);
+      border-top: 1px solid rgba(184, 150, 90, 0.08);
     }
 
-    /* ── SUBMIT ── */
-    .submit-wrap { text-align: center; margin-top: 80px; }
+    /* ── SUBMIT BUTTON ── */
+    .submit-wrap {
+      text-align: center;
+      margin-top: 80px;
+    }
 
     .submit-btn {
       display: inline-block;
@@ -283,31 +314,37 @@
       padding: 20px 64px;
       font-family: 'Cormorant Garamond', serif;
       font-size: 15px;
-      letter-spacing: .3em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      transition: transform .3s, opacity .3s;
+      transition: transform 0.3s;
     }
-    .submit-btn:hover { transform: translateY(-2px); }
-    .submit-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+    }
 
     .submit-btn::after {
       content: '';
       position: absolute;
       top: 0; left: -100%; width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
-      transition: left .6s;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.6s;
     }
-    .submit-btn:hover::after { left: 100%; }
 
-    /* ── SUCCESS ── */
+    .submit-btn:hover::after {
+      left: 100%;
+    }
+
+    /* ── SUCCESS MESSAGE ── */
     #success {
       display: none;
       text-align: center;
       padding: 40px 0;
     }
+
     #success h3 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 42px;
@@ -315,30 +352,12 @@
       color: var(--rose);
       margin-bottom: 16px;
     }
-    #success p { font-size: 15px; color: var(--muted); line-height: 1.8; }
 
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 48px 24px;
-      font-size: 12px;
-      letter-spacing: .2em;
-      color: var(--muted);
-      position: relative; z-index: 1;
-    }
-    footer em {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 18px;
-      color: var(--rose);
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    /* ── ANIMATIONS ── */
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes arrowPulse { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     @media (max-width: 480px) {
       .rsvp-card { padding: 48px 24px; }
@@ -348,183 +367,174 @@
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="ring-outer"></div>
-  <div class="deco-line"></div>
-  <p class="label">We're getting married</p>
-  <h1 class="names">
-    騁玄 <span class="ampersand">&amp;</span> <em>鈺綺</em>
-  </h1>
-  <p class="hero-date">2027 年 9 月 4 日（五）</p>
-  <p class="hero-venue">宜蘭山頂會館</p>
-  <div class="scroll-cue" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">
-    <span>RSVP</span>
-    <div class="scroll-arrow"></div>
-  </div>
-</section>
+  <section class="hero">
+    <div class="ring-outer"></div>
+    <div class="deco-line"></div>
+    <p class="label">We're getting married</p>
+    <h1 class="names">
+      騁玄 <span class="ampersand">&amp;</span> <em>鈺綺</em>
+    </h1>
+    <p class="hero-date">2027 年 9 月 4 日（五）</p>
+    <p class="hero-venue">宜蘭山頂會館</p>
+  </section>
 
-<!-- RSVP -->
-<section class="rsvp-section" id="rsvp">
-  <h2 class="section-title">R.S.V.P</h2>
-  <p class="section-subtitle">Kindly Respond By January 01, 2027</p>
+  <div class="rsvp-section" id="rsvp">
+    <h2 class="section-title">R.S.V.P</h2>
+    <p class="section-subtitle">Kindly Respond By August 01</p>
 
-  <div class="rsvp-card">
-    <form id="rsvp-form">
-
-      <div class="field-group">
-        <label for="name">您的姓名 Name</label>
-        <input type="text" id="name" placeholder="請輸入姓名" />
-      </div>
-
-      <div class="field-group">
-        <label>出席狀況 Attendance</label>
-        <div class="options-row">
-          <div class="option-item">
-            <input type="radio" name="attend" id="att-yes" value="yes" onchange="toggleAttend()" />
-            <label for="att-yes">期待參加 Joyfully Accept</label>
-          </div>
-          <div class="option-item">
-            <input type="radio" name="attend" id="att-no" value="no" onchange="toggleAttend()" />
-            <label for="att-no">婉拒參加 Regretfully Decline</label>
-          </div>
-        </div>
-      </div>
-
-      <div id="attend-details">
+    <div class="rsvp-card">
+      <form id="rsvp-form">
         <div class="field-group">
-          <label>出席人數 Number of Guests</label>
-          <div class="counter">
-            <button type="button" class="counter-btn" onclick="changeCount(-1)">–</button>
-            <span class="counter-num" id="count-display">1</span>
-            <button type="button" class="counter-btn" onclick="changeCount(1)">+</button>
-          </div>
+          <label for="name">您的姓名 Name</label>
+          <input type="text" id="name" name="name" required placeholder="請輸入姓名">
         </div>
 
         <div class="field-group">
-          <label>餐點選擇 Dietary Requirements</label>
+          <label>出席狀況 Attendance</label>
           <div class="options-row">
             <div class="option-item">
-              <input type="checkbox" name="meal" id="meal-meat" value="葷食" />
-              <label for="meal-meat">葷食</label>
+              <input type="radio" name="attend" id="att-yes" value="yes" onclick="toggleFields()" required>
+              <label for="att-yes">期待參加 Joyfully Accept</label>
             </div>
             <div class="option-item">
-              <input type="checkbox" name="meal" id="meal-veg" value="素食" />
-              <label for="meal-veg">素食</label>
+              <input type="radio" name="attend" id="att-no" value="no" onclick="toggleFields()">
+              <label for="att-no">婉拒參加 Regretfully Decline</label>
+            </div>
+          </div>
+        </div>
+
+        <div id="attend-details">
+          <div class="field-group">
+            <label>出席人數 Number of Guests</label>
+            <div class="counter">
+              <button type="button" class="counter-btn" onclick="updateGuestCount(-1)">–</button>
+              <input type="text" id="guests" value="1" readonly>
+              <button type="button" class="counter-btn" onclick="updateGuestCount(1)">+</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label>餐點選擇 Dietary Requirements</label>
+            <div class="options-row">
+              <div class="option-item">
+                <input type="checkbox" name="meal" id="meal-1" value="葷食">
+                <label for="meal-1">葷食</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" name="meal" id="meal-2" value="素食">
+                <label for="meal-2">素食</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label>是否需要住宿 Accommodation Needed?</label>
+            <div class="options-row">
+              <div class="option-item">
+                <input type="radio" name="hotel" id="hotel-yes" value="yes" onclick="toggleHotelDetail()">
+                <label for="hotel-yes">需要住宿</label>
+              </div>
+              <div class="option-item">
+                <input type="radio" name="hotel" id="hotel-no" value="no" onclick="toggleHotelDetail()">
+                <label for="hotel-no">不需要住宿</label>
+              </div>
+            </div>
+            <div id="hotel-detail">
+              <input type="text" placeholder="請備註住宿人數或特殊需求">
             </div>
           </div>
         </div>
 
         <div class="field-group">
-          <label>是否需要住宿 Accommodation Needed?</label>
-          <div class="options-row">
-            <div class="option-item">
-              <input type="radio" name="hotel" id="hotel-yes" value="yes" onchange="toggleHotel()" />
-              <label for="hotel-yes">需要住宿</label>
-            </div>
-            <div class="option-item">
-              <input type="radio" name="hotel" id="hotel-no" value="no" onchange="toggleHotel()" />
-              <label for="hotel-no">不需要住宿</label>
-            </div>
-          </div>
-          <div id="hotel-detail">
-            <input type="text" id="hotel-note" placeholder="請備註住宿人數或特殊需求" style="margin-top:20px" />
-          </div>
+          <label for="message">給新人的話 Message</label>
+          <textarea id="message" rows="3" placeholder="寫下您的祝福..."></textarea>
         </div>
+
+        <div class="submit-wrap">
+          <button type="submit" class="submit-btn">
+            送出回覆 Send RSVP
+          </button>
+        </div>
+      </form>
+
+      <div id="success">
+        <h3>Thank You!</h3>
+        <p>您的回覆已成功送出，期待與您相見。</p>
       </div>
-
-      <div class="field-group">
-        <label for="message">給新人的話 Message</label>
-        <textarea id="message" rows="3" placeholder="寫下您的祝福..."></textarea>
-      </div>
-
-      <div class="submit-wrap">
-        <button type="submit" class="submit-btn">送出回覆 Send RSVP</button>
-      </div>
-
-    </form>
-
-    <div id="success">
-      <h3>Thank You!</h3>
-      <p>您的回覆已成功送出<br>期待在婚禮當天與您相見 ✦</p>
     </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <em>騁玄 &amp; 鈺綺</em>
-  感謝您一路以來的陪伴與祝福
-</footer>
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw647H8Pdn-v279hgidfVBBRP43D1zNCFKpwS7kvDKB_a1UD-geK2R9F2rf2-9S7Cx60g/exec';
 
-<script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyL7CO0I99tGa9f9_PjJQMrzaHKpm8eSjmrOhJr231o0PdePA75Vcxb-ceLMzdHryFzOg/exec';
+    function updateGuestCount(val) {
+      const input = document.getElementById('guests');
+      let current = parseInt(input.value) || 1;
+      current += val;
+      if(current < 1) current = 1;
+      input.value = current;
+    }
 
-  let guestCount = 1;
+    function toggleFields() {
+      const attend = document.querySelector('input[name="attend"]:checked').value;
+      document.getElementById('attend-details').style.display = (attend === 'yes') ? 'block' : 'none';
+    }
 
-  function changeCount(d) {
-    guestCount = Math.max(1, Math.min(20, guestCount + d));
-    document.getElementById('count-display').textContent = guestCount;
-  }
+    function toggleHotelDetail() {
+      const hotelEl = document.querySelector('input[name="hotel"]:checked');
+      if (hotelEl) {
+        document.getElementById('hotel-detail').style.display = (hotelEl.value === 'yes') ? 'block' : 'none';
+      }
+    }
 
-  function toggleAttend() {
-    const val = document.querySelector('input[name="attend"]:checked').value;
-    document.getElementById('attend-details').style.display = val === 'yes' ? 'block' : 'none';
-  }
+    document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-  function toggleHotel() {
-    const el = document.querySelector('input[name="hotel"]:checked');
-    document.getElementById('hotel-detail').style.display = el && el.value === 'yes' ? 'block' : 'none';
-  }
+      const name = document.getElementById('name').value.trim();
+      const attend = document.querySelector('input[name="attend"]:checked').value;
+      const guests = attend === 'yes' ? document.getElementById('guests').value : '0';
+      const meals = attend === 'yes'
+        ? Array.from(document.querySelectorAll('input[name="meal"]:checked')).map(el => el.value).join('、')
+        : '';
+      const hotelEl = document.querySelector('input[name="hotel"]:checked');
+      const hotel = hotelEl ? hotelEl.value : '';
+      const hotelNote = hotel === 'yes'
+        ? (document.querySelector('#hotel-detail input') || {value:''}).value.trim()
+        : '';
+      const message = document.getElementById('message').value.trim();
 
-  document.getElementById('rsvp-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+      const btn = document.querySelector('.submit-btn');
+      btn.disabled = true;
+      btn.textContent = '送出中...';
 
-    const name = document.getElementById('name').value.trim();
-    const attendEl = document.querySelector('input[name="attend"]:checked');
+      const payload = { name, attend, guests, meals, hotel, hotelNote, message };
 
-    if (!name) { alert('請輸入您的姓名 ✦'); return; }
-    if (!attendEl) { alert('請選擇是否出席 ✦'); return; }
-
-    const attend = attendEl.value;
-    const guests = attend === 'yes' ? String(guestCount) : '0';
-    const meals = attend === 'yes'
-      ? Array.from(document.querySelectorAll('input[name="meal"]:checked')).map(el => el.value).join('、')
-      : '';
-    const hotelEl = document.querySelector('input[name="hotel"]:checked');
-    const hotel = hotelEl ? hotelEl.value : '';
-    const hotelNote = hotel === 'yes' ? document.getElementById('hotel-note').value.trim() : '';
-    const message = document.getElementById('message').value.trim();
-
-    const btn = document.querySelector('.submit-btn');
-    btn.disabled = true;
-    btn.textContent = '送出中...';
-
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, attend, guests, meals, hotel, hotelNote, message })
-    })
-    .then(() => {
-      const form = document.getElementById('rsvp-form');
-      form.style.transition = 'opacity .5s, transform .5s';
-      form.style.opacity = '0';
-      form.style.transform = 'translateY(20px)';
-      setTimeout(() => {
-        form.style.display = 'none';
-        const success = document.getElementById('success');
-        success.style.display = 'block';
-        success.style.animation = 'fadeUp .6s ease';
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 500);
-    })
-    .catch(() => {
-      alert('抱歉，送出時發生錯誤，請稍後再試。');
-      btn.disabled = false;
-      btn.textContent = '送出回覆 Send RSVP';
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        const form = document.getElementById('rsvp-form');
+        form.style.transition = 'opacity .5s, transform .5s';
+        form.style.opacity = '0';
+        form.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          form.style.display = 'none';
+          const success = document.getElementById('success');
+          success.style.display = 'block';
+          success.style.animation = 'fadeUp .6s ease';
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 500);
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert('抱歉，送出時發生錯誤，請稍後再試。');
+        btn.disabled = false;
+        btn.textContent = '重新送出回覆';
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
