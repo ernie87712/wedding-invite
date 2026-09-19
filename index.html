@@ -58724,6 +58724,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/w==" type="
             <div id="card-address" style="display:none;margin-top:16px">
               <input type="text" id="address" placeholder="請填寫寄送地址" />
             </div>
+            <div id="card-email" style="display:none;margin-top:16px">
+              <input type="email" id="email" placeholder="請填寫您的電子郵件" />
+            </div>
           </div>
 
           <div class="field-group">
@@ -58834,6 +58837,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/w==" type="
 
   function toggleCard(show) {
     document.getElementById('card-address').style.display = show ? 'block' : 'none';
+    document.getElementById('card-email').style.display = show ? 'none' : 'block';
   }
 
   function toggleAttend(show) {
@@ -58862,6 +58866,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/w==" type="
     const cardEl = document.querySelector('input[name="card"]:checked');
     const card = cardEl ? cardEl.value : '';
     const address = card === '需要' ? document.getElementById('address').value.trim() : '';
+    const email = card === '不需要' ? document.getElementById('email').value.trim() : '';
     const babyEl = document.querySelector('input[name="babyseat"]:checked');
     const babyseat = counts.kids > 0 && babyEl ? babyEl.value : '';
     const message = document.getElementById('message').value.trim();
@@ -58872,7 +58877,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/w==" type="
 
     fetch(SCRIPT_URL, {
       method: 'POST', mode: 'no-cors',
-      body: JSON.stringify({ name, attend, guests, meals, relation, phone, card, address, babyseat, message })
+      body: JSON.stringify({ name, attend, guests, meals, relation, phone, card, address, email, babyseat, message })
     }).then(() => {
       document.getElementById('rsvp-form').style.opacity = '0';
       document.getElementById('rsvp-form').style.transform = 'translateY(16px)';
